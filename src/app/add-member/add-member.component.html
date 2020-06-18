@@ -1,0 +1,17 @@
+<div class="row justify-content-center">
+    <div class="col-md-5">
+
+        <mat-card>
+            <p class="h2 text-center">Add New Member</p>
+            <hr>
+            <mat-card-content class="card-body">
+                <mat-form-field class="col-md mt-5">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="username" #username>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" (click)="addMember(username.value)">Add new Member</button>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

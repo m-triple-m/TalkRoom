@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <mat-card class="mt-5">
+                <mat-tab-group mat-align-tabs="start">
+                    <mat-tab label="Sign UP">
+                        <form [formGroup]="reg_form" (ngSubmit)="register(reg_form.value)">
+                            <p class="text-center display-4 mt-4">SignUp</p>
+                            <mat-form-field class="col-md mt-5">
+                                <mat-label>Name</mat-label>
+                                <input matInput placeholder="name" formControlName="name">
+                                <mat-error>Name required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="col-md mt-3">
+                                <mat-label>Username</mat-label>
+                                <input matInput placeholder="username" formControlName="username">
+                                <mat-error>Username required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="col-md mt-3">
+                                <mat-label>Password</mat-label>
+                                <input matInput placeholder="password" formControlName="password">
+                                <mat-error>Password is required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="col-md mt-3">
+                                <mat-label>Email</mat-label>
+                                <input matInput placeholder="email" formControlName="email">
+                                <mat-error>Email is required</mat-error>
+                            </mat-form-field>
+
+                            <button mat-raised-button color="accent" class="mt-5 btn-block">Sign Me Up</button>
+                        </form>
+                    </mat-tab>
+                    <mat-tab label="Sign IN">
+                        <form [formGroup]="login_form" (ngSubmit)="login(login_form.value)">
+                            <p class="text-center display-4 mt-4">SignIn</p>
+                            <mat-form-field class="col-md mt-5">
+                                <mat-label>Username</mat-label>
+                                <input matInput placeholder="username" formControlName="username">
+                                <mat-error></mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="col-md mt-3">
+                                <mat-label>Password</mat-label>
+                                <input matInput placeholder="******" formControlName="password">
+                                <mat-error></mat-error>
+                            </mat-form-field>
+
+                            <button mat-raised-button color="accent" class="mt-5 btn-block">Log IN</button>
+                        </form>
+                    </mat-tab>
+                  </mat-tab-group>
+            </mat-card>
+        </div>
+    </div>
+</div>

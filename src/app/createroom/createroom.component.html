@@ -1,0 +1,25 @@
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <mat-card>
+            <mat-card-content class="card-body">
+                <mat-checkbox [(ngModel)]="protect">Keep It Private</mat-checkbox>
+                <form [formGroup]="roomform" (ngSubmit)="createRoom(roomform.value)">
+                    <mat-form-field class="col-md mt-5">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="name" formControlName="name">
+                        <mat-error>Name required</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-md mt-5" *ngIf="protect">
+                        <mat-label>Password</mat-label>
+                        <input matInput placeholder="password" formControlName="password">
+                        <mat-error>Password Required</mat-error>
+                    </mat-form-field>
+
+                    <button mat-raised-button color="primary">Create new Room</button>
+
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
