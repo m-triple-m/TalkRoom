@@ -1,0 +1,14 @@
+.side-panel{
+    height: 100vh;
+    box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.267);
+    margin: 10px;
+    padding: 15px;
+    background-image: linear-gradient(to bottom, rgb(120, 0, 141), rgb(127, 0, 139));
+    color: white;
+}
+
+.top-con{
+    background-image: linear-gradient(to right, rgba(61, 61, 61, 0.431), rgba(71, 71, 71, 0.24));
+    padding: 1rem 1rem 1rem 5rem;
+    margin-top: 1rem;
+}

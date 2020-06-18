@@ -1,39 +1,54 @@
-<button mat-raised-button color="primary" (click)="toggleCreateRoom()">Create new Room</button>
-<button mat-raised-button color="primary" (click)="toggleChatRoom()">ChatRoom</button>
-<button mat-raised-button color="primary" (click)="toggleAddMem()">Add new Member</button>
-<div *ngIf="roomservice.currentroom">
-    <p class="h2">My Rooms</p>
-    <ul class="list-group" *ngIf="allrooms">
-        <li class="list-group-item" *ngFor="let room of allrooms" (click)="selectRoom(room)">
-            <p class="h4">{{room.name}}</p>
-        </li>
-    </ul>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3 side-panel">
+            <p class="text-center h3">Welcome User</p>
+            <hr>
 
-    <p class="h2 mt-5">Members in Rooms</p>
-    <ul class="list-group" *ngIf="roomservice.currentroom">
-        <li class="list-group-item" *ngFor="let member of roomMembers">
-            <p class="h4">{{member.name}}</p>
-        </li>
-    </ul>
-
-    <p class="h3">Cuurently Joined : </p>
-    <p class="h4">{{roomservice.currentroom.name}}</p>
-
-    <div class="container">
-        <mat-card>
-            <div class="card-body">
-                <p *ngFor="let msg of messages">
-                    {{msg.message}}
+            <button mat-raised-button color="primary" class="btn-lg btn-block" (click)="toggleCreateRoom()">Create new Room</button>
+            <button mat-raised-button color="primary" class="btn-lg btn-block" (click)="toggleChatRoom()">ChatRoom</button>
+            <button mat-raised-button color="primary" class="btn-lg btn-block" (click)="toggleAddMem()">Add new Member</button>
+        </div>
+        <div class="col-8 main-panel">
+            <div class="top-con">
+                <p class="display-4" *ngIf="roomservice.currentroom">
+                    Selected Room : {{roomservice.currentroom.name}}
                 </p>
             </div>
-        </mat-card>
+            <div *ngIf="!roomservice.currentroom">
+                <p class="text-center display-4">Create A Room First</p>
+            </div>
+            <div *ngIf="roomservice.currentroom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-card>
+                            <mat-card-content class="card-body">
+                                <p class="h2">My Rooms</p>
+                                <ul class="list-group" *ngIf="allrooms">
+                                <li class="list-group-item" *ngFor="let room of allrooms" (click)="selectRoom(room)">
+                                    <p class="h4">{{room.name}}</p>
+                                </li>
+                        </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-card>
+                            <mat-card-content class="card-body">
+                                <p class="h2">Members in Room :  {{roomservice.currentroom.name}}</p>
+                                <ul class="list-group" *ngIf="roomservice.currentroom">
+                                    <li class="list-group-item" *ngFor="let member of roomMembers">
+                                        <p class="h4">{{member.name}}</p>
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+            <app-createroom *ngIf="showCreateRoom"></app-createroom>
+            <app-chat *ngIf="showChatRoom" [roomdata] = "roomservice.currentroom"></app-chat>
+            <app-add-member *ngIf="showAddMem" [roomdata] = "roomservice.currentroom"></app-add-member>
+            
+        </div>
     </div>
 </div>
-
-<div *ngIf="!roomservice.currentroom">
-    <p class="text-center display-4">Create A Room First</p>
-</div>
-
-<app-createroom *ngIf="showCreateRoom"></app-createroom>
-<app-chat *ngIf="showChatRoom" [roomdata] = "roomservice.currentroom"></app-chat>
-<app-add-member *ngIf="showAddMem" [roomdata] = "roomservice.currentroom"></app-add-member>
