@@ -7,7 +7,8 @@ const schema = new Schema({
     password : String,
     created : Date,
     private : Boolean,
-    members : [{type : mongoose.Types.ObjectId, ref : 'Users'}]
+    members : [{type : mongoose.Types.ObjectId, ref : 'Users'}],
+    messages : []
 })
 
 const model = mongoose.model('Rooms', schema);

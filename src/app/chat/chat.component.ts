@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChatService } from '../chat.service';
+import { RoomService } from '../room.service';
 
 @Component({
   selector: 'app-chat',
@@ -11,10 +12,12 @@ export class ChatComponent implements OnInit {
 
   @Input('roomdata') roomData;
   messages = [];
+  currentuser;
 
-  constructor(private chatservice: ChatService) { }
+  constructor(private chatservice: ChatService, private roomservice: RoomService) { }
 
   ngOnInit(): void {
+    this.currentuser = JSON.parse(sessionStorage.getItem('user'));
     this.joinRoom();
     this.chatservice.recieveRoomMessage().subscribe(data => {
       this.messages.push(data);
@@ -30,6 +33,11 @@ export class ChatComponent implements OnInit {
     let obj = {message : msg, roomname : this.roomData.name, sent : true};
     this.chatservice.sendRoomMessage(obj);
     this.messages.push(obj);
+
+    this.roomData.messages.push({message : msg, user : this.currentuser._id, created : new Date()});
+    this.roomservice.updateRoom(this.roomData._id, {messages : this.roomData.messages}).subscribe(data => {
+      console.log(data);
+    })
   }
 
   joinRoom(){

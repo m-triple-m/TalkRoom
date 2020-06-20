@@ -22,13 +22,13 @@ export class CreateroomComponent implements OnInit {
       name : ['', Validators.required],
       admin : this.currentuser._id,
       password : ['', Validators.required],
-      created : new Date(),
-      private : this.protect
+      created : new Date()
     })
   }
 
   createRoom(formdata){
     console.log(formdata);
+    formdata.private = this.protect;
     this.roomservice.addRoom(formdata).subscribe(data => {
       console.log(data);
       // this.roomservice.currentroom = data;

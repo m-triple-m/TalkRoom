@@ -2,6 +2,7 @@
     <div class="col-md-6">
         <mat-card>
             <mat-card-content class="card-body">
+                {{protect}}
                 <mat-checkbox [(ngModel)]="protect">Keep It Private</mat-checkbox>
                 <form [formGroup]="roomform" (ngSubmit)="createRoom(roomform.value)">
                     <mat-form-field class="col-md mt-5">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { RoomService } from '../room.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-room-dashboard',
@@ -64,6 +65,31 @@ export class RoomDashboardComponent implements OnInit {
   }
 
   selectRoom(room){
+    if(room.private){
+      Swal.fire({
+        title: 'Enter name for the plot',
+        input: 'text',
+        inputAttributes: {
+          autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Submit',
+        showLoaderOnConfirm: true
+      }).then((result) => {
+        if (result.value == room.password) {
+          //select room logic
+          this.roomservice.currentroom = room;
+          this.roomMembers = room.members;
+        }else{
+          Swal.fire({
+            icon : 'error',
+            title : 'Error',
+            text : 'Wrong Password'
+          })
+        }
+      })
+    }
+    //select room logic
     this.roomservice.currentroom = room;
     this.roomMembers = room.members;
   }
